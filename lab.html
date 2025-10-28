@@ -3,49 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab - Quiz</title>
+  <title>DFIR Lab - Domande</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .question { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    .hint { color: #666; font-style: italic; margin-top: 10px; cursor: pointer; }
+    .answer { margin-top: 10px; padding: 10px; background: #f0f8ff; border-radius: 5px; display: none; }
+    .show-answer { display: block; }
+    input { width: 100%; padding: 8px; margin-top: 8px; }
+    button { margin-top: 10px; padding: 8px 16px; }
+  </style>
 </head>
-<body class="lab-page">
+<body>
   <div class="container">
-    <h1>Quiz Forense</h1>
-
-    <div class="question">
-      <p><strong>1. Qual è la posizione del file sospetto individuato nei log di Windows?</strong></p>
-      <input type="text" id="q1" placeholder="Inserisci la risposta..." data-answer="C:\Users\utente\AppData\Local\Temp">
-      <button class="check-btn" onclick="checkAnswer('q1')">Invia</button>
-      <div id="q1-feedback" class="feedback"></div>
-      <div class="hint-container">
-        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
-        <p class="hint">Controlla la directory temporanea dell’utente in AppData\Local.</p>
-      </div>
-    </div>
-
-    <div class="question">
-      <p><strong>2. Quale comando di Volatility può essere usato per elencare i processi attivi?</strong></p>
-      <input type="text" id="q2" placeholder="Inserisci la risposta..." data-answer="pslist">
-      <button class="check-btn" onclick="checkAnswer('q2')">Invia</button>
-      <div id="q2-feedback" class="feedback"></div>
-      <div class="hint-container">
-        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
-        <p class="hint">È simile al comando “pslist”.</p>
-      </div>
-    </div>
-
-    <div class="question">
-      <p><strong>3. Qual è l’indirizzo IP del server remoto usato per l’esfiltrazione DNS?</strong></p>
-      <input type="text" id="q3" placeholder="Inserisci la risposta..." data-answer="192.168.199.155">
-      <button class="check-btn" onclick="checkAnswer('q3')">Invia</button>
-      <div id="q3-feedback" class="feedback"></div>
-      <div class="hint-container">
-        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
-        <p class="hint">Verifica nei log DNS o nel pcap filtrando per protocollo UDP.</p>
-      </div>
-    </div>
-
-    <a href="index.html" class="button">Torna alla Home</a>
+    <h1>Digital Forensics Lab</h1>
+    <p>Rispondi alle domande. Usa i suggerimenti se serve!</p>
+    <div id="questions-container"></div>
+    <br>
+    <a href="index.html" class="button">Torna alla home</a>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // SOSTITUISCI CON I TUOI DATI
+    const SUPABASE_URL = 'https://gqpaxboyiigupwqprgxv.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxcGF4Ym95aWlndXB3cXByZ3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2ODE5MDQsImV4cCI6MjA3NzI1NzkwNH0.RyDT5fn1FryTuxyC15UM5TFrRXU-NojeQNj22E2_OuM';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function loadQuestions() {
+      const { data: questions, error } = await supabase
+        .from('questions')
+        .select('*')
+        .order('order_num', { ascending: true });
+
+      if (error) {
+        document.getElementById('questions-container').innerHTML = '<p>Errore caricamento domande.</p>';
+        console.error(error);
+        return;
+      }
+
+      const container = document.getElementById('questions-container');
+      container.innerHTML = '';
+
+      questions.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+          <h3>${index + 1}. ${q.question}</h3>
+          <input type="text" id="input-${q.id}" placeholder="La tua risposta...">
+          <p class="hint" onclick="this.nextElementSibling.classList.toggle('show-answer')">
+            💡 Suggerimento: ${q.hint}
+          </p>
+          <div class="answer" id="answer-${q.id}">
+            ✅ <strong>Risposta corretta:</strong> ${q.answer}
+          </div>
+          <button onclick="checkAnswer(${q.id}, '${q.answer.trim()}')">Verifica</button>
+          <p id="result-${q.id}"></p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function checkAnswer(id, correct) {
+      const input = document.getElementById(`input-${id}`).value.trim();
+      const result = document.getElementById(`result-${id}`);
+      if (input.toLowerCase() === correct.toLowerCase()) {
+        result.innerHTML = '<span style="color:green">Corretto!</span>';
+      } else {
+        result.innerHTML = `<span style="color:red">Sbagliato. Prova ancora!</span>`;
+      }
+    }
+
+    // Carica domande all'avvio
+    loadQuestions();
+  </script>
 </body>
 </html>
