@@ -1,32 +1,75 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Lab - Home</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>🔐 Blue Team Lab</h1>
-    <p>Metti alla prova le tue capacità di analisi forense e difesa.</p>
-  </header>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #001F3F;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-  <main>
-    <section class="intro">
-      <h2>Scenario</h2>
-      <p>
-        Un attacco mirato ha compromesso un host interno. Analizza i log, individua gli IoC e rispondi alle domande per ricostruire l’incidente.
-      </p>
-    </section>
+.container {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
 
-    <section class="start">
-      <a href="lab.html" class="btn">Inizia il laboratorio</a>
-    </section>
-  </main>
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 20px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
 
-  <footer>
-    <p>© 2025 Blue Team Lab — Created for educational purposes.</p>
-  </footer>
-</body>
-</html>
+.button:hover {
+  background-color: #0056b3;
+}
+
+.question {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.question input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 8px;
+}
+
+.hint-container {
+  margin-top: 10px;
+}
+
+.hint-btn {
+  background-color: #ff9800;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hint-btn:hover {
+  background-color: #e68900;
+}
+
+.hint {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
