@@ -3,64 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Lab - Domande</title>
+  <title>Lab - Quiz</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    function checkAnswer(qid) {
-      const input = document.getElementById(qid);
-      const feedback = document.getElementById(qid + "-feedback");
-      const correct = input.dataset.answer.toLowerCase().trim();
-      const user = input.value.toLowerCase().trim();
-
-      if (!user) {
-        feedback.textContent = "⚠️ Inserisci una risposta.";
-        feedback.className = "feedback warn";
-        return;
-      }
-
-      if (user === correct) {
-        feedback.textContent = "✅ Corretto!";
-        feedback.className = "feedback ok";
-      } else {
-        feedback.textContent = "❌ Risposta errata. Riprova.";
-        feedback.className = "feedback err";
-      }
-    }
-
-    function toggleHint(id) {
-      const hint = document.getElementById(id);
-      hint.classList.toggle("show");
-    }
-  </script>
 </head>
-<body>
-  <header>
-    <h1>🧠 Blue Team Lab — Sezione Domande</h1>
-    <p>Puoi rispondere alle domande una alla volta e visualizzare i suggerimenti cliccando sui box.</p>
-  </header>
+<body class="lab-page">
+  <div class="container">
+    <h1>Quiz Forense</h1>
 
-  <main>
-    <section class="question">
-      <h2>1️⃣ Qual è la capitale di Singapore?</h2>
-      <input id="q1" data-answer="singapore" placeholder="Inserisci la tua risposta...">
-      <button onclick="checkAnswer('q1')">Invia</button>
-      <div id="q1-feedback" class="feedback"></div>
-      <div class="hint-box" onclick="toggleHint('hint1')">💡 Mostra suggerimento</div>
-      <div id="hint1" class="hint">Pensa al nome dello stato stesso 😉</div>
-    </section>
+    <div class="question">
+      <p><strong>1. Qual è la posizione del file sospetto individuato nei log di Windows?</strong></p>
+      <input type="text" placeholder="Inserisci la risposta...">
+      <div class="hint-container">
+        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
+        <p class="hint">Controlla la directory temporanea dell’utente in AppData\Local.</p>
+      </div>
+    </div>
 
-    <section class="question">
-      <h2>2️⃣ In quale directory di Windows vengono salvati i file temporanei dell’utente?</h2>
-      <input id="q2" data-answer="C:\\Users\\utente\\AppData\\Local\\Temp" placeholder="Inserisci la tua risposta...">
-      <button onclick="checkAnswer('q2')">Invia</button>
-      <div id="q2-feedback" class="feedback"></div>
-      <div class="hint-box" onclick="toggleHint('hint2')">💡 Mostra suggerimento</div>
-      <div id="hint2" class="hint">Controlla le cartelle nascoste sotto AppData.</div>
-    </section>
-  </main>
+    <div class="question">
+      <p><strong>2. Quale comando di Volatility può essere usato per elencare i processi attivi?</strong></p>
+      <input type="text" placeholder="Inserisci la risposta...">
+      <div class="hint-container">
+        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
+        <p class="hint">È simile al comando “pslist”.</p>
+      </div>
+    </div>
 
-  <footer>
-    <a href="index.html" class="btn">⬅️ Torna alla home</a>
-  </footer>
+    <div class="question">
+      <p><strong>3. Qual è l’indirizzo IP del server remoto usato per l’esfiltrazione DNS?</strong></p>
+      <input type="text" placeholder="Inserisci la risposta...">
+      <div class="hint-container">
+        <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
+        <p class="hint">Verifica nei log DNS o nel pcap filtrando per protocollo UDP.</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="button">Torna alla Home</a>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
