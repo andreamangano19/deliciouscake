@@ -1,3 +1,4 @@
+/* Stile generale del body */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #001F3F;
@@ -10,6 +11,7 @@ body {
   min-height: 100vh;
 }
 
+/* Container centrale */
 .container {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.6);
@@ -20,6 +22,7 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Pulsanti principali */
 .button {
   display: inline-block;
   padding: 12px 24px;
@@ -35,11 +38,13 @@ body {
   background-color: #0056b3;
 }
 
+/* Domande */
 .question {
   margin-bottom: 30px;
   text-align: left;
 }
 
+/* Input delle risposte */
 .question input {
   width: 100%;
   padding: 10px;
@@ -48,10 +53,12 @@ body {
   margin-top: 8px;
 }
 
+/* Contenitore suggerimenti */
 .hint-container {
   margin-top: 10px;
 }
 
+/* Pulsante suggerimento */
 .hint-btn {
   background-color: #ff9800;
   border: none;
@@ -66,10 +73,44 @@ body {
   background-color: #e68900;
 }
 
+/* Suggerimento nascosto */
 .hint {
   display: none;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 6px;
   margin-top: 8px;
+}
+
+/* Pulsante "Invia risposta" */
+.check-btn {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check-btn:hover {
+  background-color: #218838;
+}
+
+/* Feedback risposta */
+.feedback {
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.feedback.ok {
+  color: #2ea043;
+}
+
+.feedback.err {
+  color: #f85149;
+}
+
+.feedback.warn {
+  color: #ffb86c;
 }
