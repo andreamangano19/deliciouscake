@@ -12,7 +12,9 @@
 
     <div class="question">
       <p><strong>1. Qual è la posizione del file sospetto individuato nei log di Windows?</strong></p>
-      <input type="text" placeholder="Inserisci la risposta...">
+      <input type="text" id="q1" placeholder="Inserisci la risposta..." data-answer="C:\Users\utente\AppData\Local\Temp">
+      <button class="check-btn" onclick="checkAnswer('q1')">Invia</button>
+      <div id="q1-feedback" class="feedback"></div>
       <div class="hint-container">
         <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
         <p class="hint">Controlla la directory temporanea dell’utente in AppData\Local.</p>
@@ -21,7 +23,9 @@
 
     <div class="question">
       <p><strong>2. Quale comando di Volatility può essere usato per elencare i processi attivi?</strong></p>
-      <input type="text" placeholder="Inserisci la risposta...">
+      <input type="text" id="q2" placeholder="Inserisci la risposta..." data-answer="pslist">
+      <button class="check-btn" onclick="checkAnswer('q2')">Invia</button>
+      <div id="q2-feedback" class="feedback"></div>
       <div class="hint-container">
         <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
         <p class="hint">È simile al comando “pslist”.</p>
@@ -30,7 +34,9 @@
 
     <div class="question">
       <p><strong>3. Qual è l’indirizzo IP del server remoto usato per l’esfiltrazione DNS?</strong></p>
-      <input type="text" placeholder="Inserisci la risposta...">
+      <input type="text" id="q3" placeholder="Inserisci la risposta..." data-answer="192.168.199.155">
+      <button class="check-btn" onclick="checkAnswer('q3')">Invia</button>
+      <div id="q3-feedback" class="feedback"></div>
       <div class="hint-container">
         <button class="hint-btn" onclick="toggleHint(this)">Mostra suggerimento</button>
         <p class="hint">Verifica nei log DNS o nel pcap filtrando per protocollo UDP.</p>
