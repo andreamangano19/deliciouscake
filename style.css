@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Lab - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🔐 Blue Team Lab</h1>
+    <p>Metti alla prova le tue capacità di analisi forense e difesa.</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Scenario</h2>
+      <p>
+        Un attacco mirato ha compromesso un host interno. Analizza i log, individua gli IoC e rispondi alle domande per ricostruire l’incidente.
+      </p>
+    </section>
+
+    <section class="start">
+      <a href="lab.html" class="btn">Inizia il laboratorio</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Blue Team Lab — Created for educational purposes.</p>
+  </footer>
+</body>
+</html>
