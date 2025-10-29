@@ -160,7 +160,7 @@ p {
   width: 100%;
   max-width: 400px;           /* Larghezza massima */
   height: auto;
-  max-height: 200px;          /* Altezza massima */
+  max-height: 250px;          /* Altezza massima */
   object-fit: contain;          /* Ritaglia senza deformare */
   background: #000;
   padding: 10px;
@@ -177,6 +177,7 @@ p {
   box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
   border-color: #00d4ff;
 }
+
 
 
 
