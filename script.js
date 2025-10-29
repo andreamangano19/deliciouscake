@@ -98,8 +98,20 @@ function checkAnswer(id, correct) {
 function updateScore() {
   const el = document.getElementById('score-container');
   el.innerHTML = `Punteggio: <span style="color:#00ff88">${correctCount}</span> / ${totalQuestions}`;
+
   if (correctCount === totalQuestions && totalQuestions > 0) {
     el.innerHTML += ' – MISSIONE COMPIUTA!';
+
+    // Messaggio temporaneo
+    const msg = document.createElement('p');
+    msg.innerHTML = '<strong style="color:#00d4ff;">Redirect in corso...</strong>';
+    msg.style.marginTop = '15px';
+    el.appendChild(msg);
+
+    // REDIRECT AUTOMATICO dopo 2 secondi
+    setTimeout(() => {
+      window.location.href = 'congratulations.html';
+    }, 2000);
   }
 }
 
