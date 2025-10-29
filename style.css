@@ -160,6 +160,8 @@ p {
   width: 100%;
   max-width: 400px;           /* Larghezza massima */
   height: auto;
+  max-height: 200px;          /* Altezza massima */
+  object-fit: contain;          /* Ritaglia senza deformare */
   border-radius: 14px;
   margin: 0 auto 28px;        /* Spazio sotto */
   display: block;
@@ -173,6 +175,7 @@ p {
   box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
   border-color: #00d4ff;
 }
+
 
 
 
