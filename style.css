@@ -1,116 +1,156 @@
-/* Stile generale del body */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #001F3F;
-  color: #fff;
+/* Stile generale */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #001F3F, #003366);
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
-/* Container centrale */
 .container {
   text-align: center;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 40px;
   border-radius: 12px;
-  max-width: 700px;
+  max-width: 800px;
   width: 90%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Pulsanti principali */
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+p {
+  margin-bottom: 25px;
+  font-size: 1.1em;
+  color: #ccc;
+}
+
+/* Pulsante principale */
 .button {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 14px 30px;
   margin-top: 20px;
-  background-color: #007BFF;
+  background: linear-gradient(to right, #007BFF, #00c3ff);
   color: white;
-  border-radius: 6px;
+  border-radius: 50px;
   text-decoration: none;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .button:hover {
-  background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
 }
 
 /* Domande */
 .question {
-  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 25px 0;
   text-align: left;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Input delle risposte */
+.question h3 {
+  color: #00d4ff;
+  margin-bottom: 12px;
+  font-size: 1.3em;
+}
+
 .question input {
   width: 100%;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
-  margin-top: 8px;
-}
-
-/* Contenitore suggerimenti */
-.hint-container {
-  margin-top: 10px;
-}
-
-/* Pulsante suggerimento */
-.hint-btn {
-  background-color: #ff9800;
-  border: none;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.15);
   color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
+  font-size: 1em;
+}
+
+.question input::placeholder {
+  color: #aaa;
+}
+
+/* Pulsanti */
+.hint-btn, .check-btn {
+  padding: 8px 16px;
+  margin: 8px 4px 0 0;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hint-btn {
+  background: #ff9800;
+  color: white;
 }
 
 .hint-btn:hover {
-  background-color: #e68900;
+  background: #f57c00;
 }
 
-/* Suggerimento nascosto */
-.hint {
-  display: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 8px;
-}
-
-/* Pulsante "Invia risposta" */
 .check-btn {
-  margin-left: 10px;
-  padding: 6px 12px;
-  background-color: #28a745;
+  background: #28a745;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .check-btn:hover {
-  background-color: #218838;
+  background: #218838;
 }
 
-/* Feedback risposta */
+/* Suggerimento */
+.hint {
+  display: none;
+  background: rgba(0, 212, 255, 0.15);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 10px 0;
+  border-left: 4px solid #00d4ff;
+  color: #e0f7ff;
+  font-style: italic;
+}
+
+/* Feedback */
 .feedback {
-  margin-top: 6px;
-  font-weight: 600;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
-.feedback.ok {
-  color: #2ea043;
-}
+.feedback.ok { color: #2ea043; }
+.feedback.err { color: #f85149; }
+.feedback.warn { color: #ffb86c; }
 
-.feedback.err {
-  color: #f85149;
-}
-
-.feedback.warn {
-  color: #ffb86c;
+/* Punteggio */
+#score-container {
+  margin: 30px 0;
+  padding: 18px;
+  background: rgba(40, 167, 69, 0.3);
+  border-radius: 12px;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #d4edda;
+  border: 1px solid #28a745;
 }
