@@ -123,7 +123,7 @@ function updateScore() {
     localStorage.setItem('dfir_total', totalQuestions);
 
     setTimeout(() => {
-      window.location.href = 'congratulazioni.html';
+      window.location.href = 'congratulations.html';
     }, 2000);
   }
 }
