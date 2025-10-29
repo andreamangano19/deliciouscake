@@ -5,11 +5,9 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let correctCount = 0;
 let totalQuestions = 0;
-
-// Oggetto globale per salvare le risposte corrette
 window.correctAnswers = {};
 
-// Carica domande da Supabase
+// Carica domande
 async function loadQuestions() {
   const { data: questions, error } = await supabase
     .from('questions')
@@ -32,6 +30,15 @@ async function loadQuestions() {
   questions.forEach((q, index) => {
     const div = document.createElement('div');
     div.className = 'question';
+    
+    // ESCAPE SICURO PER HTML (solo per hint e question)
+    const safeHint = q.hint
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
     div.innerHTML = `
       <h3>${index + 1}. ${q.question}</h3>
       <input type="text" id="input-${q.id}" placeholder="La tua risposta...">
@@ -44,21 +51,21 @@ async function loadQuestions() {
       </button>
       
       <div class="hint" id="hint-${q.id}" style="display:none;">
-        <strong>Suggerimento:</strong> ${q.hint}
+        <strong>Suggerimento:</strong> ${safeHint}
       </div>
       
       <p id="result-${q.id}" class="feedback"></p>
     `;
     container.appendChild(div);
 
-    // SALVA LA RISPOSTA ESATTA (con tutti i caratteri speciali)
+    // SALVA RISPOSTA ESATTA (SENZA ESCAPE – è sicura in JS)
     window.correctAnswers[q.id] = q.answer.trim();
   });
 
   updateScore();
 }
 
-// Mostra/Nascondi suggerimento
+// Toggle suggerimento
 function toggleHint(id, button) {
   const hint = document.getElementById(id);
   if (hint.style.display === "block") {
@@ -98,7 +105,7 @@ function checkAnswer(id) {
   updateScore();
 }
 
-// Aggiorna punteggio + redirect automatico
+// Aggiorna punteggio + redirect
 function updateScore() {
   const el = document.getElementById('score-container');
   el.innerHTML = `Punteggio: <span style="color:#00ff88">${correctCount}</span> / ${totalQuestions}`;
@@ -107,11 +114,10 @@ function updateScore() {
     el.innerHTML += ' – MISSIONE COMPIUTA!';
 
     const msg = document.createElement('p');
-    msg.innerHTML = '<strong style="color:#00d4ff;">Accesso al certificato sbloccato! Redirect...</strong>';
+    msg.innerHTML = '<strong style="color:#00d4ff;">Redirect in corso...</strong>';
     msg.style.marginTop = '15px';
     el.appendChild(msg);
 
-    // SBLOCCA e redirect
     localStorage.setItem('dfir_completed', 'true');
     localStorage.setItem('dfir_score', correctCount);
     localStorage.setItem('dfir_total', totalQuestions);
