@@ -154,3 +154,25 @@ p {
   color: #d4edda;
   border: 1px solid #28a745;
 }
+
+/* IMMAGINE COPERTINA - SOPRA IL PULSANTE */
+.cover-image {
+  width: 100%;
+  max-width: 700px;           /* Larghezza massima */
+  height: auto;
+  max-height: 300px;          /* Altezza massima */
+  object-fit: cover;          /* Ritaglia senza deformare */
+  border-radius: 14px;
+  margin: 0 auto 28px;        /* Spazio sotto */
+  display: block;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  border: 4px solid rgba(0, 212, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.cover-image:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
+  border-color: #00d4ff;
+}
+
