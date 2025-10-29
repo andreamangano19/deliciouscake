@@ -102,15 +102,17 @@ function updateScore() {
   if (correctCount === totalQuestions && totalQuestions > 0) {
     el.innerHTML += ' – MISSIONE COMPIUTA!';
 
-    // Messaggio temporaneo
     const msg = document.createElement('p');
-    msg.innerHTML = '<strong style="color:#00d4ff;">Redirect in corso...</strong>';
+    msg.innerHTML = '<strong style="color:#00d4ff;">Accesso al certificato sbloccato! Redirect...</strong>';
     msg.style.marginTop = '15px';
     el.appendChild(msg);
 
-    // REDIRECT AUTOMATICO dopo 2 secondi
+    // SBLOCCA e redirect
+    localStorage.setItem('dfir_completed', 'true');
+    localStorage.setItem('dfir_score', correctCount);
+
     setTimeout(() => {
-      window.location.href = 'congratulations.html';
+      window.location.href = 'congratulazioni.html';
     }, 2000);
   }
 }
